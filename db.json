@@ -1,12 +1,44 @@
 {
   "transactions": [
     {
-      "id": "1",
+      "id": 1,
+      "createdAt": "2024-05-22T19:36:44.505Z",
       "description": "Desenvolvimento de site",
-      "type": "income",
-      "category": "Venda",
       "price": 14000,
-      "createdAt": ""
+      "type": "income",
+      "category": "Venda"
+    },
+    {
+      "id": 2,
+      "createdAt": "2024-05-22T19:36:44.505Z",
+      "description": "Curso React",
+      "price": 1200,
+      "type": "outcome",
+      "category": "compra"
+    },
+    {
+      "description": "Luz",
+      "price": 100,
+      "category": "casa",
+      "type": "outcome",
+      "createdAt": "2024-05-26T17:23:44.560Z",
+      "id": 3
+    },
+    {
+      "description": "Materias de construção",
+      "category": "casa",
+      "price": 1000,
+      "type": "outcome",
+      "createdAt": "2024-05-26T17:47:24.137Z",
+      "id": 4
+    },
+    {
+      "description": "Tenis",
+      "category": "lazer",
+      "price": 123,
+      "type": "outcome",
+      "createdAt": "2024-05-27T00:19:38.186Z",
+      "id": 5
     }
   ]
 }
