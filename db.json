@@ -39,6 +39,22 @@
       "type": "outcome",
       "createdAt": "2024-05-27T00:19:38.186Z",
       "id": 5
+    },
+    {
+      "description": "Viagem",
+      "category": "Lazer",
+      "price": 200,
+      "type": "outcome",
+      "createdAt": "2024-05-31T16:37:15.381Z",
+      "id": 6
+    },
+    {
+      "description": "colombia gold",
+      "category": "Para o nick F1",
+      "price": 100,
+      "type": "outcome",
+      "createdAt": "2024-06-03T14:16:02.312Z",
+      "id": 7
     }
   ]
 }
