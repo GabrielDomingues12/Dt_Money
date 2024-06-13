@@ -2,6 +2,7 @@ import { Header } from '../../components/header'
 import Summary from '../../components/summary'
 import { SearchForm } from './components/SearchForm'
 import {
+  PaginateContainer,
   PriceHighLight,
   TransactionContainer,
   TransactionsTable,
@@ -9,10 +10,46 @@ import {
 import { TransactionContext } from '../../contexts'
 import { priceFormatter, formatteDate } from '../../@utils/formatter'
 import { useContextSelector } from 'use-context-selector'
+import { useEffect, useState } from 'react'
+import {
+  CaretDoubleLeft,
+  CaretDoubleRight,
+  CaretLeft,
+  CaretRight,
+} from 'phosphor-react'
 export const Transactions = () => {
+  const [paginate, setPaginate] = useState(1)
+  const [pageNumber, setPageNumber] = useState<number[]>([])
+  const transactionsPerPage = 5
+
   const transactions = useContextSelector(TransactionContext, (context) => {
     return context.transactions
   })
+
+  const indexOfLastTransaction = paginate * transactionsPerPage
+  const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage
+  const currentPage = transactions.slice(
+    indexOfFirstTransaction,
+    indexOfLastTransaction,
+  )
+
+  useEffect(() => {
+    const totalPages = Math.ceil(transactions.length / transactionsPerPage)
+    const pageNumbersArray = []
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbersArray.push(i)
+    }
+    setPageNumber(pageNumbersArray)
+  }, [transactions])
+
+  function handleNextPage() {
+    setPaginate(paginate + 1)
+  }
+
+  function handleBeforePage() {
+    setPaginate(paginate - 1)
+  }
+
   return (
     <div>
       <Header />
@@ -21,7 +58,7 @@ export const Transactions = () => {
         <SearchForm />
         <TransactionsTable>
           <tbody>
-            {transactions.map((prev) => {
+            {currentPage.map((prev) => {
               return (
                 <>
                   <tr key={prev.id}>
@@ -39,6 +76,16 @@ export const Transactions = () => {
             })}
           </tbody>
         </TransactionsTable>
+        <PaginateContainer>
+          <CaretDoubleLeft size={15} onClick={() => setPaginate(1)} />
+          <CaretLeft size={15} onClick={handleBeforePage} />
+          <span>{`${paginate} / ${pageNumber.length}`}</span>
+          <CaretRight size={15} onClick={handleNextPage} />
+          <CaretDoubleRight
+            size={15}
+            onClick={() => setPaginate(pageNumber.length)}
+          />
+        </PaginateContainer>
       </TransactionContainer>
     </div>
   )
